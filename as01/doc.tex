@@ -1,0 +1,121 @@
+% Article template for Mathematics Magazine
+% Revised 7/2002  Thanks for Greg St. George
+\documentclass[12pt]{article}
+\usepackage{amssymb}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{fitch}
+\usepackage{pf2}
+\usepackage{graphicx}
+\renewcommand{\baselinestretch}{1.2}
+%This is the command that spaces the manuscript for easy reading
+\newtheorem{zeige}{Zeige}
+
+
+%todo 
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\usepackage{xargs}                      % Use more than one optional parameter in a new commands
+\newcommandx{\QUESTION}[2][1=]{\todo[linecolor=none,backgroundcolor=blue!15,bordercolor=none,#1]{\textbf{QUESTION: }#2}}
+
+\pflongnumbers
+\def\assumePfkwd{\textsc{Assume}:}%
+\def\provePfkwd{\textsc{Zeige}:}%
+\def\pickPfkwd{\textsc{Pick}}%
+\def\pfnewPfkwd{\textsc{New}}%
+\def\casePfkwd{\textsc{Fall}:}%
+\def\letPfkwd{\textsc{Sei}:}%
+\def\sufficesPfkwd{\textsc{Suffices}:}%
+\def\asufficesPfkwd{\textsc{Suffices}}%
+\def\definePfkwd{\textsc{Def.}:}%
+\def\proofPfkwd{\textsc{Beweis}:}%
+\def\proofsketchPfkwd{\textsc{Proof sketch}:}%
+\def\qedPfkwd{{\fboxsep=\z@\fbox{\rule{.5em}{0pt}\rule{0pt}{2ex}}}}
+\def\qedstepPfkwd{Q.E.D.}
+
+
+
+\begin{document}
+%\thispagestyle{empty}
+\title{Ausgewählte Kapitel der Logik}
+\author{Denis Erfurt}
+\maketitle
+
+
+
+
+
+\subsection*{Aufgabe 1}
+\subsubsection*{a) i)}
+G enthält genau zwei isolierte Knoten.
+\begin{eqnarray}
+  &\phi_{\text{ist\_isoliert}}(x) := \forall z. (E(x,z)\lor E(z,x)) \rightarrow z = x \\
+  &\phi := \exists x\exists y. \phi_{\text{ist\_isoliert}}(x) \land \phi_{\text{ist\_isoliert}}(y) \land x\neq y \\
+  &\land \forall z \phi_{\text{ist\_isoliert}}(z) \rightarrow z = x \lor z = y
+\end{eqnarray}
+\subsubsection*{a) ii)}
+G enthält keinen Kreis der Länge drei.
+\begin{eqnarray}
+  \neg \exists x \exists y \exists z. x \neq y \land y \neq z \land z \neq x \\
+  \land E(x,y) \land E(y,z) \land E(z,x)
+\end{eqnarray}
+\subsubsection*{b) i)}
+Es gibt unendlich viele Sophie Germain Primzahlen, d.h. Primzahlen p, so dass
+2p + 1 auch prim ist.
+\begin{eqnarray}
+  \phi_{\text{is\_prim}}(x) := \forall y. \forall z. x=y*z \rightarrow y = 1 \lor z = 1\\
+  \forall x \exists y . x \leq y \land \phi_{\text{is\_prim}}(y) \land \phi_{\text{is\_prim}}(((1+1)*y)+1)
+\end{eqnarray}
+\subsubsection*{b) ii)}
+Jede Primzahl ist die Summe zweier Quadratzahlen.
+\begin{eqnarray}
+  \forall x. \phi_{\text{is\_prim}}(x) \rightarrow \exists y \exists z. x = ((y*y)*(z*z))
+\end{eqnarray}
+\subsection*{Aufgabe 2}
+\subsubsection*{a) i)}
+\begin{equation}
+  (\exists v_1(R(v_0, v_2)\land \forall v_0 R(v_1, f(v_4, v_0))))\frac{f(v_1,v2)}{v_0}\frac{v_0}{v_3} \\
+\end{equation}
+$var(S)=\{v_1, v_2, v_0\}$
+Im nächsten schritt wählen wir $v_3$ als die neue substituierte variable für $v_1$, da diese in $\phi$ nicht frei vorkommt.
+\begin{equation}
+  (\exists v_3(R(v_0, v_2)\land \forall v_0 R(v_1, f(v_4, v_0)))\frac{f(v_1,v2)}{v_0}\frac{v_3}{v_1}) \\
+\end{equation}
+
+\begin{equation}
+  (\exists v_3(R(v_0, v_2)\land \forall v_0 R(v_1, f(v_4, v_0))\frac{v_3}{v_1}))
+\end{equation}
+
+\begin{equation}
+  (\exists v_3(R(f(v_1,v_2), v_2)\land \forall v_0 R(v_3, f(v_4, v_0))))
+\end{equation}
+
+\subsubsection*{a) ii)}
+\begin{equation}
+  \exists v_1 (E(v_0, v_1) \land (\exists v_0(E(v_1, v_0)\land \exists v_1 E(v_0, v_1))))\frac{v_1}{v_0}
+\end{equation}
+
+
+\begin{equation}
+  \exists v_2 (E(v_0, v_1) \land (\exists v_0(E(v_1, v_0)\land \exists v_1 E(v_0, v_1)))\frac{v_1}{v_0}\frac{v_2}{v_1})
+\end{equation}
+
+
+\begin{equation}
+  \exists v_2 (E(v_0, v_2) \land (\exists v_0(E(v_1, v_0)\land \exists v_1 E(v_0, v_1))\frac{v_1}{v_0}\frac{v_2}{v_1}))
+\end{equation}
+
+
+\begin{equation}
+  \exists v_2 (E(v_0, v_2) \land (\exists v_0(E(v_1, v_0)\land \exists v_1 E(v_0, v_1))\frac{v_2}{v_1}))
+\end{equation}
+
+
+\begin{equation}
+  \exists v_2 (E(v_1, v_2) \land (\exists v_0(E(v_2, v_0)\land \exists v_1 E(v_0, v_1))))
+\end{equation}
+
+\subsection*{Aufgabe 3}
+
+
+\end{document}
