@@ -1,0 +1,147 @@
+% Article template for Mathematics Magazine
+% Revised 7/2002  Thanks for Greg St. George
+\documentclass[12pt]{article}
+\usepackage{amssymb}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{fitch}
+\usepackage{pf2}
+\usepackage{graphicx}
+\renewcommand{\baselinestretch}{1.2}
+%This is the command that spaces the manuscript for easy reading
+\newtheorem{zeige}{Zeige}
+
+
+%todo
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\usepackage{xargs}                      % Use more than one optional parameter in a new commands
+\newcommandx{\QUESTION}[2][1=]{\todo[linecolor=none,backgroundcolor=blue!15,bordercolor=none,#1]{\textbf{QUESTION: }#2}}
+
+\pflongnumbers
+\def\assumePfkwd{\textsc{Assume}:}%
+\def\provePfkwd{\textsc{Zeige}:}%
+\def\pickPfkwd{\textsc{Pick}}%
+\def\pfnewPfkwd{\textsc{New}}%
+\def\casePfkwd{\textsc{Fall}:}%
+\def\letPfkwd{\textsc{Sei}:}%
+\def\sufficesPfkwd{\textsc{Suffices}:}%
+\def\asufficesPfkwd{\textsc{Suffices}}%
+\def\definePfkwd{\textsc{Def.}:}%
+\def\proofPfkwd{\textsc{Beweis}:}%
+\def\proofsketchPfkwd{\textsc{Proof sketch}:}%
+\def\qedPfkwd{{\fboxsep=\z@\fbox{\rule{.5em}{0pt}\rule{0pt}{2ex}}}}
+\def\qedstepPfkwd{Q.E.D.}
+
+
+
+\begin{document}
+%\thispagestyle{empty}
+\title{Ausgewählte Kapitel der Logik}
+\author{Denis Erfurt}
+\maketitle
+
+
+
+\subsection*{Aufgabe 1}
+\begin{eqnarray}
+  \underline{0}&=&0 \\
+  \underline{1}&=&+(0,1)\\
+  \underline{2}&=&+(+(0,1),1)\\
+  \underline{3}&=&+(+(+(0,1),1),1)
+\end{eqnarray}
+
+\begin{eqnarray}
+  <\underline{0}>&=&d \\
+  <\underline{1}>&=&b7dfe8 \\
+  <\underline{2}>&=&b7b7dfe8fe8 \\
+  <\underline{3}>&=&b7b7b7dfe8fe8fe8
+\end{eqnarray}
+
+\begin{eqnarray}
+  \lbrack<\underline{0}>\rbrack_{\mathbb{N}}&=&14 \\
+  \lbrack<\underline{1}>\rbrack_{\mathbb{N}}&=&12050408\\
+  \lbrack<\underline{2}>\rbrack_\mathbb{N}&=&12625022717928\\
+  \lbrack<\underline{3}>\rbrack_\mathbb{N}&=&13238251801993449448
+\end{eqnarray}
+
+\subsection*{Aufgabe 2}
+
+\subsubsection*{a)}
+Die Mengen Y, V, T, L, S, G, B $\subseteq \mathcal{A}^*$ sind entscheidbar.
+
+\begin{enumerate}
+  \item Y - $\sigma$ - nach def. in O(1) entscheidbar (2-f)
+  \item V - $v_i$ - nach def. 100..00 - i mal die 0
+  \item T - 0, 1 nach def. Y. $\leq, +, \times$ nach induktion entscheidbar:
+    Sei $t_1, t_2$ entscheidbar, dann sind: $+(t_1,t_2); \times(t_1,t_2)$ entscheidbar. (e.g. CFG grammatik + Parser)
+  \item L - formeln - Nach ind. entscheidbar:
+    T und V sind entscheidbar: $t_1=t_2$ und für $\leq(t_1,t_2);$ sind entscheidbar.
+    Sei $\phi_1, \phi_2$ entscheidbar: $\phi_1\land\phi_2$, $\phi_1\lor\phi_2$, $\neg\phi_1$, $\exists x \phi_1$ sowie $\forall x. \phi_1$ sind entscheidbar.
+  \item S - sätze - L ist entscheidbar - falls freie variablen = 0 $\Rightarrow$ ja $\Rightarrow $ entscheidbar
+  \item G - endliche Formelmengen - L entscheidbar + $ff\notin L\Rightarrow \phi_1 ff\phi_2 ff..$ entscheidbar
+  \item B - beweis - $fff\notin G,L \Rightarrow fffGfff\phi fff$ entscheidbar
+\end{enumerate}
+
+\subsubsection*{b)}
+Die logischen Operationen:
+\begin{enumerate}
+  \item Negation
+  \item Disjunktion
+  \item Konjunktion
+  \item existentielle Quantifizierung
+  \item universelle Quantifizierung
+\end{enumerate}
+aufgefasst als 1- bzw 2-stellige partielle Funktionen auf $\mathcal{A}^*$, 
+sind berechenbar.
+
+\QUESTION{Do they mean the interpretter function here? what is the encoding of true and false values?}
+
+\subsubsection*{c)}
+Die beiden Funktionen, die jeder $FO[\sigma]$-Formel die endliche Menge ihrer variablen bzw. die endliche Menge ihrer Subformeln zuordnen, sind berechenbar.
+
+Rekursiv über den aufbau der Formeln, entscheide ob terme variablen sind, falls ja, füge sie einer globalen Menge hinzu. gib die menge aus.
+
+\subsubsection*{d)}
+Die Substitution einer Variablen durch einen Term in einer Formel, aufgefasst
+als 3-stellige partielle Funktion auf $\mathcal{A}^*$, ist berechenbar.
+
+Rekursiv über den aufbau der Formeln. Prüfe ob term = die gesuchte variable, falls ja,
+gib den substitution zurück, andernfalls gib das andere zurück.
+
+\subsubsection*{e)}
+Die 2-stellige Relation 
+$\{(f,g)\in \mathcal{A}^*\times \mathcal{A}^*:f\in L$ ist die Kodierung einer Formel und g ist die Kodiereung einer endlcihen Menge $\Gamma$ mit $\phi\in\Gamma \} $
+ist entscheidbar.
+
+Dekodiere $\Gamma,\phi$, prüfe ob $\phi\in\Gamma$, daher ist die Relation entscheidbar.
+
+\subsubsection*{f)}
+Die 3-stellige Relation
+\[ \{(b,g,f)\in (\mathcal{A}^*)^3\} \]
+ist entscheidbar.
+
+Dekodiere alles(berechenbar), prüfe ob $\Gamma\vdash\phi$ (entscheidbar), daher ist die Relation ebenfalls entscheidbar.
+\section*{Aufgabe 3}
+Die funktion $g: \mathbb{N}^2 \rightarrow \mathbb{N}$ definiert als:
+\begin{equation}
+g(y_1, y_2) = \frac{1}{2} (y_1 + y_2 + 1)(y_1 + y_2) + y_2
+\end{equation}
+Ist injektiv:
+Sei $t = y_1 + y_2$. Dann ist $g(t - y_2, y_2) = g(y_1, y_2)$. Sei
+$g(t_1 y_2) = g(t_2 - y_3, y_3)$. Dann gilt:
+\begin{equation*}
+ \begin{split}
+ \frac{1}{2} (t_1 + 1)t_1 + y_2 = \frac{1}{2} (t_2 + 1)t_2 + y_3 \\
+ t_1^2 + t_1 + 2y_2 = t_3^2 + t_3 + 2y_3
+ \end{split}
+\end{equation*}
+Da die zwei variablen $t$ und $y_2$ sind von einender unabhänging benötigen wir:
+\begin{equation}
+ 2y_2 = 2y_3 \rightarrow y_2 = y_3
+\end{equation}
+\begin{equation}
+ t_1^2 + t_1 = t_3^2 + t_3 \rightarrow t_1 = t_3
+\end{equation}
+
+\end{document}
