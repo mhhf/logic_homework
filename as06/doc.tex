@@ -123,25 +123,28 @@ ist entscheidbar.
 
 Dekodiere alles(berechenbar), prüfe ob $\Gamma\vdash\phi$ (entscheidbar), daher ist die Relation ebenfalls entscheidbar.
 \section*{Aufgabe 3}
+
+\section*{Aufgabe 3}
 Die funktion $g: \mathbb{N}^2 \rightarrow \mathbb{N}$ definiert als:
 \begin{equation}
 g(y_1, y_2) = \frac{1}{2} (y_1 + y_2 + 1)(y_1 + y_2) + y_2
 \end{equation}
-Ist injektiv:
-Sei $t = y_1 + y_2$. Dann ist $g(t - y_2, y_2) = g(y_1, y_2)$. Sei
-$g(t_1 y_2) = g(t_2 - y_3, y_3)$. Dann gilt:
-\begin{equation*}
- \begin{split}
- \frac{1}{2} (t_1 + 1)t_1 + y_2 = \frac{1}{2} (t_2 + 1)t_2 + y_3 \\
- t_1^2 + t_1 + 2y_2 = t_3^2 + t_3 + 2y_3
- \end{split}
-\end{equation*}
-Da die zwei variablen $t$ und $y_2$ sind von einender unabhänging benötigen wir:
+Sei $t = y_1 + y_2$. Dann gilt:
 \begin{equation}
- 2y_2 = 2y_3 \rightarrow y_2 = y_3
+g(t - y_2, y_2) = \sum_{j=0}^{t+1}j + y_2
 \end{equation}
+Jetzt können wir das invers ausdrücken als:
+\begin{equation*}
+g^{-1}(n) = (t - (n - \frac{t(t+1)}{2}),  n - \frac{t(t+ 1)}{2} ), \quad \mbox{ for }  \frac{t(t+1)}{2} \leq n < \frac{(t+1)(t+2)}{2}
+\end{equation*}
+$g^{-1}$ ist total da für jeder $n$ gibt es (nur) ein $u$ s.d. $\frac{u(u+1)}{2} \leq n < \frac{(u + 1)(u + 2)}{2}$. Weiter ist $g^{-1}$ wirklich ein invers:\\
+Sei $n$ beliebig und sei $u$ s.d.
 \begin{equation}
- t_1^2 + t_1 = t_3^2 + t_3 \rightarrow t_1 = t_3
+  \frac{u(u+1)}{2} \leq n < \frac{(u+1)(u+2)}{2}
+\end{equation}
+Dann ist:
+\begin{equation}
+  g(g^{-1}(n)) = g(u - (n - \frac{u(u+1)}{2}),  n - \frac{u(u+1)}{2}) = \frac{u(u+1)}{2} + n - \frac{u(u+1)}{2} =  n
 \end{equation}
 
 \end{document}
