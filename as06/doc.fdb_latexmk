@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1466606528 "doc.tex" "doc.pdf" "doc" 1466606528
+["pdflatex"] 1466673184 "doc.tex" "doc.pdf" "doc" 1466673185
   "/usr/local/texlive/2015basic/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2015basic/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
   "/usr/local/texlive/2015basic/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -25,6 +25,7 @@
   "/usr/local/texlive/2015basic/texmf-dist/fonts/tfm/public/latex-fonts/lasy8.tfm" 1136768653 520 7bb3abb160b19e0ed6ac404bb59052b7 ""
   "/usr/local/texlive/2015basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1248133631 32080 340ef9bf63678554ee606688e7b5339d ""
   "/usr/local/texlive/2015basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb" 1248133631 32378 2b20eba6bb36c716382b6d96240eaa69 ""
+  "/usr/local/texlive/2015basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1248133631 30251 6afa5cb1d0204815a708a080681d4674 ""
   "/usr/local/texlive/2015basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb" 1248133631 36741 fa121aac0049305630cf160b86157ee4 ""
   "/usr/local/texlive/2015basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1248133631 35469 70d41d2b9ea31d5d813066df7c99281c ""
   "/usr/local/texlive/2015basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1248133631 32722 d7379af29a190c3f453aba36302ff5a9 ""
@@ -152,10 +153,10 @@
   "/usr/local/texlive/2015basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1453210305 331968 05e21b1f24a42efa4e340402f0e44dee ""
   "/usr/local/texlive/2015basic/texmf-var/web2c/pdftex/pdflatex.fmt" 1434548785 2499808 094ae36c4f42b6b16b28aadbfa403b60 ""
   "/usr/local/texlive/2015basic/texmf.cnf" 1432478332 628 096f87b1123b576e7bac81e7554a490e ""
-  "doc.aux" 1466606528 540 87093ff8fa5d8533026d5bc14cf988e6 ""
-  "doc.tex" 1466606527 5308 0d4f3e18648b06122b92b26ff75b2090 ""
+  "doc.aux" 1466673185 540 b7de826e636b35d49c43f76aeaa40cf1 ""
+  "doc.tex" 1466673184 5862 c3dd3121b0f5c2c1d678f82abf192940 ""
   "fitch.sty" 1466428914 3875 779ad7b711652ef973296f60b090a0d6 ""
   (generated)
-  "doc.aux"
   "doc.pdf"
+  "doc.aux"
   "doc.log"

@@ -1,0 +1,85 @@
+% Article template for Mathematics Magazine
+% Revised 7/2002  Thanks for Greg St. George
+\documentclass[12pt]{article}
+\usepackage{amssymb}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{fitch}
+\usepackage{pf2}
+\usepackage{graphicx}
+\renewcommand{\baselinestretch}{1.2}
+%This is the command that spaces the manuscript for easy reading
+\newtheorem{zeige}{Zeige}
+
+
+%todo
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\usepackage{xargs}                      % Use more than one optional parameter in a new commands
+\newcommandx{\QUESTION}[2][1=]{\todo[linecolor=none,backgroundcolor=blue!15,bordercolor=none,#1]{\textbf{QUESTION: }#2}}
+
+\pflongnumbers
+\def\assumePfkwd{\textsc{Assume}:}%
+\def\provePfkwd{\textsc{Zeige}:}%
+\def\pickPfkwd{\textsc{Pick}}%
+\def\pfnewPfkwd{\textsc{New}}%
+\def\casePfkwd{\textsc{Fall}:}%
+\def\letPfkwd{\textsc{Sei}:}%
+\def\sufficesPfkwd{\textsc{Suffices}:}%
+\def\asufficesPfkwd{\textsc{Suffices}}%
+\def\definePfkwd{\textsc{Def.}:}%
+\def\proofPfkwd{\textsc{Beweis}:}%
+\def\proofsketchPfkwd{\textsc{Proof sketch}:}%
+\def\qedPfkwd{{\fboxsep=\z@\fbox{\rule{.5em}{0pt}\rule{0pt}{2ex}}}}
+\def\qedstepPfkwd{Q.E.D.}
+
+
+
+\begin{document}
+%\thispagestyle{empty}
+\title{Ausgewählte Kapitel der Logik}
+\author{Denis Erfurt}
+\maketitle
+
+
+
+\subsection*{Aufgabe 1}
+\subsubsection*{a)}
+\begin{align*}
+  \varphi_{on}(z, z_1,...,z_k):=&z=z_1+\underline{1}\lor z = z_1 + z_2 + \underline{2} \lor ... \lor z_1 + ... +z_k + k \\
+  \varphi_{start}^M(x,y,z_1,...,z_k) := &\varphi_{Kopf}^M(x,y) \land
+  \varphi_\beta(x,\underline{0},\underline{q_0}) \land \\
+  &\exists z < y. \underline{0} < z \land \\
+  &(\varphi_{on}(z, z_1, ..., z_k) \rightarrow \varphi(x,z,\underline{2})) \land \\
+  &(\neg\varphi_{on}(z, z_1, ..., z_k) \rightarrow \varphi(x,z,\underline{1}))
+\end{align*}
+
+\subsubsection*{c)}
+\begin{align*}
+  \varphi_{schritt}^M(x,y,x',y') :=& \varphi_{Kopf}(x,y) \land \varphi_{Kopf}(x',y') \land \\
+  & \exists z < y \exists w \leq x \exists w' \leq x \exists \alpha \leq x \exists \alpha' \leq x\\
+  &(\forall z' z\neq z'\land z+1\neq z'\land z\neq z'+1 \rightarrow \exists b\leq \varphi_\beta(x,z',b)\land\varphi_\beta(x',z',b))\land \\
+  \bigvee_{\substack{q\in Q,\alpha\in\{\underline{0},\underline{1},\underline{2}\} \\ \delta(q,\alpha)=(w',\alpha',p)}} &
+  w=q \land \varphi_\beta(x,z,w) \land \varphi_\beta(x,z+1,\alpha) \land \chi_p(x,x',z,w',\alpha')
+\end{align*}
+
+\begin{align*}
+  \chi_{\leftarrow}(x,x',z,w',\alpha') := &\exists z'<z \land z_{-1} + 1 = z \land \\
+  &\varphi_\beta(x', z_{-1}, w')  \land \\
+  &\exists l\leq x.\varphi_\beta(x', z, l)\land \varphi_\beta(x, z_{-1}, l) \land \\
+  &\varphi_\beta(x',z+1,\alpha') \\
+\end{align*}
+
+\begin{align*}
+  \chi_{\downarrow}(x,x',z,w',\alpha') := &\varphi_\beta(x', z, w') \\
+  &\varphi_\beta(x',z+1,\alpha') \\
+\end{align*}
+
+\begin{align*}
+  \chi_{\rightarrow}(x,x',z,w',\alpha') := &\varphi_\beta(x', z+1, w') \\
+  &\varphi_\beta(x',z,\alpha') \\
+\end{align*}
+\subsection*{Aufgabe 2}
+\subsection*{Aufgabe 3}
+\subsection*{Aufgabe 4}
+\end{document}

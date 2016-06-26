@@ -1,0 +1,61 @@
+% Article template for Mathematics Magazine
+% Revised 7/2002  Thanks for Greg St. George
+\documentclass[12pt]{article}
+\usepackage{amssymb}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{fitch}
+\usepackage{pf2}
+\usepackage{graphicx}
+\renewcommand{\baselinestretch}{1.2}
+%This is the command that spaces the manuscript for easy reading
+\newtheorem{zeige}{Zeige}
+
+
+%todo
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\usepackage{xargs}                      % Use more than one optional parameter in a new commands
+\newcommandx{\QUESTION}[2][1=]{\todo[linecolor=none,backgroundcolor=blue!15,bordercolor=none,#1]{\textbf{QUESTION: }#2}}
+
+\pflongnumbers
+\def\assumePfkwd{\textsc{Assume}:}%
+\def\provePfkwd{\textsc{Zeige}:}%
+\def\pickPfkwd{\textsc{Pick}}%
+\def\pfnewPfkwd{\textsc{New}}%
+\def\casePfkwd{\textsc{Fall}:}%
+\def\letPfkwd{\textsc{Sei}:}%
+\def\sufficesPfkwd{\textsc{Suffices}:}%
+\def\asufficesPfkwd{\textsc{Suffices}}%
+\def\definePfkwd{\textsc{Def.}:}%
+\def\proofPfkwd{\textsc{Beweis}:}%
+\def\proofsketchPfkwd{\textsc{Proof sketch}:}%
+\def\qedPfkwd{{\fboxsep=\z@\fbox{\rule{.5em}{0pt}\rule{0pt}{2ex}}}}
+\def\qedstepPfkwd{Q.E.D.}
+
+
+
+\begin{document}
+%\thispagestyle{empty}
+\title{Ausgewählte Kapitel der Logik}
+\author{Denis Erfurt}
+\maketitle
+
+
+
+\subsection*{Aufgabe 1}
+\begin{fitch}
+  \Gamma, \phi, \psi \vdash \chi & A \\
+  \Gamma, \phi\land\psi, \psi \vdash \chi & $\land A_1 (1)$ \\
+  \Gamma, \phi\land\psi, \phi\land\psi \vdash \chi & $\land A_2 (2)$ \\
+  \Gamma, \phi\land\psi \vdash \chi & $(3)$ \\
+  \Gamma, \phi\land\psi \vdash \neg(\phi\land\psi)\lor\chi & $\lor S_2(4)$ \\
+  \Gamma, \neg(\phi\land\psi) \vdash \neg(\phi\land\psi) & $ V$ \\
+  \Gamma, \neg(\phi\land\psi) \vdash \neg(\phi\land\psi)\lor \chi & $\lor S_1(6)$ \\
+  \Gamma \vdash \neg(\phi\land\psi)\lor \chi & $FU (5,7)$ \\
+\end{fitch}
+\subsection*{Aufgabe 2}
+
+
+
+\end{document}
