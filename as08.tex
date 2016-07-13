@@ -1,0 +1,89 @@
+% Article template for Mathematics Magazine
+% Revised 7/2002  Thanks for Greg St. George
+\documentclass[12pt]{article}
+\usepackage{amssymb}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\newtheorem{zeige}{Zeige}
+
+
+%todo
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\usepackage{xargs}                      % Use more than one optional parameter in a new commands
+\newcommandx{\QUESTION}[2][1=]{\todo[linecolor=none,backgroundcolor=blue!15,bordercolor=none,#1]{\textbf{QUESTION: }#2}}
+
+%\pflongnumbers
+\def\assumePfkwd{\textsc{Assume}:}%
+\def\provePfkwd{\textsc{Zeige}:}%
+\def\pickPfkwd{\textsc{Pick}}%
+\def\pfnewPfkwd{\textsc{New}}%
+\def\casePfkwd{\textsc{Fall}:}%
+\def\letPfkwd{\textsc{Sei}:}%
+\def\sufficesPfkwd{\textsc{Suffices}:}%
+\def\asufficesPfkwd{\textsc{Suffices}}%
+\def\definePfkwd{\textsc{Def.}:}%
+\def\proofPfkwd{\textsc{Beweis}:}%
+\def\proofsketchPfkwd{\textsc{Proof sketch}:}%
+\def\qedPfkwd{{\fboxsep=\z@\fbox{\rule{.5em}{0pt}\rule{0pt}{2ex}}}}
+\def\qedstepPfkwd{Q.E.D.}
+
+
+
+\begin{document}
+\title{Ausgewählte Kapitel der Logik}
+\author{Martin Lundfall}
+\maketitle
+
+\section*{Aufgabe 1}
+Nach Satz 3.21 (zusammen mit Bemerkung 3.22) ist eine Relation TM-rekursiv abzählbar genau dann wenn sie $\Sigma_1$-definierbar ist.\\
+Deswegen ist unser Ziel eine TM-rekursiv abzählbar Relation zu bauen, welche $\Sigma_1$-definition unter Negation entspricht keine TM-rekursiv abzälbare Relation.
+In Aufgabe 3 von Übungsblatt 7 haben wir gezeigt dass die Relation $H$ definiert durch
+\begin{equation}
+  \begin{split}
+  &H := \{n_M : M \mbox{ ist eine Turing-Maschine, deren Zustandsmenge eine }\\
+  &\mbox{ endliche Teilmenge von N ist, die bei leerer Eingabe nach endlich }\\
+  &\mbox{ vielen Schritten anhält}\}
+  \end{split}
+\end{equation}
+$\Sigma_1$-definierbar ist.\\
+Sei $\varphi$ die $\Sigma_1$-Formel die definiert H. Wenn $\neg \varphi$ $\Sigma_1$-definierbar wäre, würden die Mengen $\mathbb N \setminus H$ und $H$ beide rekursiv abzählbar sein, aber dass würde bedeuten dass die Halte-probleme entsheidbar wäre.
+\section*{Aufgabe 2}
+Angenommen dass Th($\mathcal Z$) ist rekursiv aufzählbar. Wir zeigen dass, es gibt eine berechenbare Funktion
+Bau T wie folgt.  Anfangen mit $T_0 = Th(Q)$.
+Für alle $\varphi \in$ Th($\mathcal Z$), falls $\varphi \cup Th(Q)$ widerspruchsfrei ist, sei $T_{n+1} = T_{n} \cup \varphi$, sonst $T_{n+1} = T_{n} \cup \neg \varphi$.
+$T = Th(\mathcal N)$ und rekursiv abzählbar. Widerspruch.
+\section*{Aufgabe 3}
+Das Ziel ist zu Übersetzen $\sigma_{Ar}$ zu eine endliche binäres Signatur $\hat \sigma$.\\
+Sei $\hat \sigma = {E,...}$ wobei\\
+\begin{equation}
+  \begin{split}
+    R_{0} &= \{n, m \in \mathbb N : m = 0\}\\
+    R_{1} &= \{n, m \in \mathbb N : m = 1\}\\
+    R_{+} &= \{n, m \in \mathbb N : R_{T}(n,m)\}
+    \end{split}
+\end{equation}
+
+sei $E_g = $
+Für alle $n, m, s \in \mathbb N$ sei
+
+\end{document}
+
+
+
+\item Falls $\phi$ ist Atomär, gehe zu schritt 5.
+\item Falls $\phi$ ist auf der Form $\phi_1 \land \phi_2$, falls $f(\phi_1) = (\phi_2) = 1$ OUTPUT 1.
+\item Falls $\phi$ ist auf der Form $\phi_1 \lor \phi_2$, falls $f(\phi_1) = 1$ oder $f(\phi_2) = 1$, OUTPUT 1.
+\item Falls $\phi$ ist auf der Form $\neg \phi_1$, gehe zu schritt 5.
+\item Falls $\phi$ ist auf der Form $\neg \phi_1$, gehe zu schritt 5.
+$f(\phi) = \{$
+\begin{enumerate}
+
+\item Falls  $\phi$ hat freie variablen, $v_0, v_1, \dots$, warten zu sehen ob die Formel $\phi \land 0 \leq v_1 \land 0 \leq v_2 \dots$ auch von $A_{\mathcal Z}$ ausgegeben wird. Falls ja, gehe weiter.
+\end{enumerate}
+$\}$
+
+
+
+und sagt, dass die Maschine haltet nach $z$ schritte mit der leeren Strenge als input. Sei $\phi(TM) = \exists z. \psi(TM, z)$, also, dass die Turingmaschine haltet nach endlich viele schritte. Da $\phi(TM)$ definiert eine r.e. relation von Turing-maschine die haltet beim input leeren Menge nach endlich viele schritte ist diese formel $\Sigma_1$ definierbar. Aber die negation von $\phi$, die sagt dass eine Turing-maschine haltet nie beim input die leeren Strenge, ist nicht r.e., und deswegen gibt es auch keinen $\Sigma_1$-definierbare formel die bezüglich zu des Standardmodells der Aritmetrik äquivalent zu $\neg \phi$ ist.
