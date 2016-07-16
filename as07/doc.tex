@@ -47,16 +47,16 @@
 \subsubsection*{a)}
 \begin{align*}
   \varphi_{on}(z, z_1,...,z_k):=&z=z_1+\underline{1}\lor z = z_1 + z_2 + \underline{2} \lor ... \lor z_1 + ... +z_k + k \\
-  \varphi_{start}^M(x,y,z_1,...,z_k) := &\varphi_{Kopf}^M(x,y) \land
+  \varphi_{start}^M(x,y,z_1,...,z_k) := &\varphi_{Konf}^M(x,y) \land
   \varphi_\beta(x,\underline{0},\underline{q_0}) \land \\
-  &\exists z < y. \underline{0} < z \land \\
+  &\forall z < y. \underline{0} < z \rightarrow  \\
   &(\varphi_{on}(z, z_1, ..., z_k) \rightarrow \varphi(x,z,\underline{2})) \land \\
   &(\neg\varphi_{on}(z, z_1, ..., z_k) \rightarrow \varphi(x,z,\underline{1}))
 \end{align*}
 
 \subsubsection*{c)}
 \begin{align*}
-  \varphi_{schritt}^M(x,y,x',y') :=& \varphi_{Kopf}(x,y) \land \varphi_{Kopf}(x',y') \land \\
+  \varphi_{schritt}^M(x,y,x',y') :=& \varphi_{Konf}(x,y) \land \varphi_{Konf}(x',y') \land \\
   & \exists z < y \exists w \leq x \exists w' \leq x \exists \alpha \leq x \exists \alpha' \leq x\\
   &(\forall z' z\neq z'\land z+1\neq z'\land z\neq z'+1 \rightarrow \exists b\leq \varphi_\beta(x,z',b)\land\varphi_\beta(x',z',b))\land \\
   \bigvee_{\substack{q\in Q,\alpha\in\{\underline{0},\underline{1},\underline{2}\} \\ \delta(q,\alpha)=(w',\alpha',p)}} &

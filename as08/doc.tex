@@ -1,0 +1,256 @@
+% Article template for Mathematics Magazine
+% Revised 7/2002  Thanks for Greg St. George
+\documentclass[12pt]{article}
+\usepackage{amssymb}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{fitch}
+\usepackage{pf2}
+\usepackage{graphicx}
+\renewcommand{\baselinestretch}{1.2}
+%This is the command that spaces the manuscript for easy reading
+\newtheorem{zeige}{Zeige}
+
+
+%todo
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\usepackage{xargs}                      % Use more than one optional parameter in a new commands
+\newcommandx{\QUESTION}[2][1=]{\todo[linecolor=none,backgroundcolor=blue!15,bordercolor=none,#1]{\textbf{QUESTION: }#2}}
+\newcommandx{\TODO}[2][1=]{\todo[inline,linecolor=none,backgroundcolor=blue!15,bordercolor=none,#1]{\textbf{TODO: }#2}}
+
+\pflongnumbers
+\def\assumePfkwd{\textsc{Assume}:}%
+\def\provePfkwd{\textsc{Zeige}:}%
+\def\pickPfkwd{\textsc{Pick}}%
+\def\pfnewPfkwd{\textsc{New}}%
+\def\casePfkwd{\textsc{Fall}:}%
+\def\letPfkwd{\textsc{Sei}:}%
+\def\sufficesPfkwd{\textsc{Suffices}:}%
+\def\asufficesPfkwd{\textsc{Suffices}}%
+\def\definePfkwd{\textsc{Def.}:}%
+\def\proofPfkwd{\textsc{Beweis}:}%
+\def\proofsketchPfkwd{\textsc{Proof sketch}:}%
+\def\qedPfkwd{{\fboxsep=\z@\fbox{\rule{.5em}{0pt}\rule{0pt}{2ex}}}}
+\def\qedstepPfkwd{Q.E.D.}
+
+
+
+\begin{document}
+%\thispagestyle{empty}
+\title{Ausgewählte Kapitel der Logik}
+\author{Denis Erfurt}
+\maketitle
+
+
+
+\subsection*{Aufgabe 1}
+Sei H die Menge aus Übungsblatt 7. 3 c).
+Wir wissen, dass H rekursiv aufzählbar ist. Nach Bemerkung 3.22 exestiert eine
+Formel $\varphi_R\in\Sigma_1$, so dass gilt:
+
+\begin{equation}
+  n\in H \Leftrightarrow \mathcal{N}\models \varphi_R[n]
+\end{equation}
+
+Wir zeigen dass es keine zu $\neg\varphi$ äquivalente $\Sigma_1$ definierbare
+Formel gibt durch ein wiedersrpruch:
+
+Angenommen $\neg\varphi$ währe $\Sigma_1$ definierbar.
+Dann währe die Menge $\bar H$ nach Bemerkung 3.22. ebenfalls definierbar:
+\begin{equation}
+  n\in \mathbb{N}\setminus H \Leftrightarrow \mathcal{N}\models\neg\varphi[n]
+\end{equation}
+
+Dieses würde jedoch bedeuten das das Halteproblem entscheidbar ist welches ein
+Wiederspruch zur Annahme ist.
+
+\begin{flushright} $\Box$ \end{flushright}
+
+
+\subsection*{Aufgabe 2}
+Zu zeigen: $Th(\mathcal{Z})$ ist nicht rekursiv aufzählbar.
+
+Wir nehmen an $Th(\mathcal{Z})$ sei r.e.
+Insbesondere ist $Th(\mathcal{Z})$ vollständing.
+
+Im folgenden wird ein Algorithmuss gezeigt, der eine rekursiv aufzählbare
+Theorie T konstruiert:
+
+Sei $T_0:=Q$.
+Beobachtung: T ist eine Theorie, T ist wiederspruchsfrei und $\mathcal{N}\models T$.
+
+Der Algorithmuss geht folgendermaßen vor: zähle rekursiv $\varphi\in
+Th(\mathcal{Z})$ auf:
+\begin{enumerate}
+  \item Falls $\varphi\notin T_{i-1} \land \neg\varphi\notin T_{i-1} \Rightarrow$
+    $T_i:= \{\psi\in FO[\sigma_{Ar}]: T_{i-1}\cup\{\varphi\}\models\psi\}$
+\end{enumerate}
+Nach Lemma 3.2 ist $T_i$ rekursiv aufzählbar.
+$T_i$ ist eine Theorie.
+$T_i$ ist wiederspruchsfrei.
+
+Sei $T:=\bigcup_{i\in N}T_i$.
+
+\begin{enumerate}
+  \item T ist vollständing, dieses folgt direkt aus der Vollständigkeit von $Th(\mathcal{Z})$.
+  \item T ist wiederspruchsfreie Theorie. (Folgt aus dem Kompaktheitssatz)
+  \item T ist rekursiv aufzählbar und mit 1. dadurch effektiv Axiomatisierbar.
+  \item $T\subseteq Q$
+\end{enumerate}
+
+Nach dem Gödlischen Unvollständigkeitssatz folgt aus 1-3: T ist Unvollständig.
+Dieses ist jedoch ein Wiederspruch zu 1.
+
+\begin{flushright} $\Box$ \end{flushright}
+
+% Da $Q$ endlich ist, ist auch $Th(\mathcal{Z})\cap Q$ r.e.
+%
+% Nach Lemma 3.2 wissen wir auch dass $T:=\{\varphi\in FO[\sigma]: Th(\mathcal{Z})\cap Q \models\varphi\}$ r.e. ist.
+%
+% \TODO{STEP}
+%
+% \[ \varphi\in Th(\mathcal{N}) \Leftarrow \varphi\in T \]
+%
+% % "$\Rightarrow$"
+% %
+% % Sei $\varphi\in T$, zeige $\varphi\in Th(\mathcal{N})$
+%
+% \begin{align}
+%   &\varphi\in T&\\
+%   \Rightarrow & \varphi\in Th(\mathcal{Z})\cap Q&\text{Def. T}\\
+%    & Q\subseteq Th(\mathcal{N}) & \text{}\\
+%   \Rightarrow & \varphi\in Th(\mathcal{N}) & \text{}\\
+%   % \Rightarrow & \mathcal{N}\models\varphi&\text{}\\
+%   % \Rightarrow & \varphi\in Th(\mathcal{N})& \Box
+% \end{align}
+%
+% % "$\Leftarrow$"
+%
+% \begin{align}
+%    & \varphi\in Th(\mathcal{N})    & \\
+%     \Rightarrow & \mathcal{N}\models\varphi &\text{Def. Th}\\
+%     \Rightarrow & Q\models \varphi &\Sigma_1\text{ Transfer Satz} \\
+%     \Rightarrow & \varphi\in Q & \text{abgeschlossenheit von Theorie}\\
+%     % \Rightarrow & Th(\mathcal{Z})\cap Q \models \varphi & \text{weakening} \\
+%     % \Rightarrow & \varphi\in T & \Box
+% \end{align}
+%
+% Das ist jedoch ein wiederspruch, da $Th(\mathcal{N})$ nicht r.e. ist.
+%
+% Deshalb ist $Th(\mathcal{Z})$ nicht r.e. 
+
+\begin{flushright} $\Box$ \end{flushright}
+
+
+
+\subsection*{Aufgabe 3}
+
+Sei $\varphi_n$ die aus Satz 2.25 konstruierte $FO[\sigma_{Ar}]$-Satz für den gilt:
+
+\[ \mathcal{N}\models\varphi_n \Leftrightarrow n\in H \]
+
+Wir geben nun eine bijektion für $\sigma$ an, die ein $\hat\sigma$ konstruiert,
+eine bijektion für die Sturktur $\mathcal{N}$ die eine Struktur
+$\hat {\mathcal{N}}$ konstruiert sowie eine, die aus einer Formel $\varphi$
+eine $\hat\varphi$ Formel konstruiert so dass gilt:
+\begin{equation}
+  \hat{\mathcal{N}}\models\hat\varphi \Leftrightarrow \mathcal{N}\models\varphi
+\end{equation}
+
+\textbf{Konstruktion für $\hat\sigma$}
+\[ \sigma = \{R_{\leq}, R_{+}, R_{*}, R_{0}, R_{1}\} \]
+
+\[ \hat\sigma = \{R_{\leq}, R_{+}^0, R_{+}^1, R_{+}^2, R_{*}^0, R_{*}^1, R_{*}^2, R_{0}, R_{1}\} \]
+Jede Relation in $\hat\sigma$ hat die Stelligkeit 2.
+
+\textbf{Konstruktion für $\hat{\mathcal{N}}$}
+
+\begin{enumerate}
+  \item $R_0^{\hat{\mathcal{N}}} = \{(0,0)\}$
+  \item $R_1^{\hat{\mathcal{N}}} = \{(1,1)\}$
+  \item $R_\leq^{\hat{\mathcal{N}}} = R_\leq^\mathcal{N}$
+\end{enumerate}
+
+Da $R_+$ sowie $R_*$ rekursiv aufzählbar sind kann man volgendermaßen vorgehen:
+
+Für $p\in\{+,*\}$ zähle rekursiv $(a_0,a_1,a_2)\in R_p$ auf. Für jeden Schritt
+sein $j\in\mathbb N$ der Index des Schrittes, sodass j für jedes Tupel eindeutig
+gewählt ist.
+
+\begin{enumerate}
+  \item $a_0\in R_p^{0,\hat{\mathcal{N}}}$
+  \item $a_1\in R_p^{1,\hat{\mathcal{N}}}$
+  \item $a_2\in R_p^{2,\hat{\mathcal{N}}}$
+\end{enumerate}
+
+Wir sehen nun also:
+\[ (a_0,a_1,a_2)\in R_p \Leftrightarrow \text{ es exestiert ein j}\in\mathbb N: (a_0,j)\in R_p^{0,\hat{\mathcal{N}}},(a_1,j)\in R_p^{1,\hat{\mathcal{N}}},(a_2,j)\in R_p^{2,\hat{\mathcal{N}}} \]
+
+\textbf{Konstruktion für $\hat\varphi$}
+
+Sei $\varphi\in FO[\sigma_{Ar}]$. Wir konstruieren einen $\hat\varphi\in FO[\hat\sigma_{Ar}]$ Satz indem wir jedes vorkommen von Relationen nach folgener strategie ersetzen:
+
+\begin{enumerate}
+  \item $R_{0}(t) \leftrightsquigarrow R_{0}(t,t)$
+  \item $R_{1}(t) \leftrightsquigarrow R_{1}(t,t)$
+  \item $R_{+}(t_0, t_1, t_2) \leftrightsquigarrow \exists j R_+^0(t_0, j)\land R_+^1(t_1, j)\land R_+^2(t_2, j)$
+  \item $R_{*}(t_0, t_1, t_2) \leftrightsquigarrow \exists j R_*^0(t_0, j)\land R_*^1(t_1, j)\land R_*^2(t_2, j)$
+\end{enumerate}
+
+Nach dieser konstruktion sowie (1) haben wir gezeigt dass es eine binäre Relation gibt, für  die das endliche Erfüllbarkeitsproblem unentscheidbar ist.
+
+
+\subsection*{Aufgabe 4}
+
+Wir wissen aus Aufgabe 3, dass es eine binäre Signatur gibt, für die das EEP
+nicht entscheidbar ist. Wir zeigen nun dass das EEP für $\sigma_{Graph} = \{E\}$
+ebenfalls unentscheidbar ist. Hinreichend hierfür ist es zu zeigen, dass es eine
+bijektion für die Formel $\hat\varphi$ zu einer Formel $\psi$ gibt, sowie eine
+aus bijektion die die Struktur $\hat{\mathcal{N}}$ auf eine Struktur
+$\mathcal{G}$ abbildet so dass gilt:
+\begin{equation}
+  \label{pf4}
+  \hat{\mathcal{N}}\models\hat\varphi \Leftrightarrow \mathcal{G}\models\psi
+\end{equation}
+
+Die Idee ist das alle Relationen in $\hat\sigma$ durch einen Index eindeutig
+gekenzeichnet werden. Jedes vorkommen einer Relaion in $\hat{\mathcal{N}}$
+wird nun durch einen Pfad mit der Länge des indexes eindeutig bestimmt, indem
+für den Pfad neue Knoten eingefügt werden. Um die Knotenmengen zu unterscheiden
+werden alle Knoten des Universums von $\hat{\mathcal{N}}$ in der neuen Struktur
+mit einer Schleife identifiziert.
+
+\subsubsection*{Konstruktion von $\mathcal{G}$}
+Sei $\hat\sigma = \{R_1, ..., R_n\}$ mit $|\hat\sigma|=n$ sowie $\hat{\mathcal{N}}
+=(N,R_1^{\hat{\mathcal{N}}},...,R_n^{\hat{\mathcal{N}}})$
+
+
+\begin{align}
+  G :=&N\dot\cup \{e_{1,R_i},...,e_{i,R_i} : R_i\in\hat\sigma\}\\
+  E :=&\{(a,a): a\in N\} \cup\\
+  &\bigcup_{R_i\in\hat\sigma}(\\
+  &\{(a,e_{1,R_i}), (e_{i,R_i}, b) | (a,b)\in R_i^{\hat{\mathcal{N}}}\} \cup\\
+  &\{e_{j,R_i},e_{j+1,R_i}| j<i\})
+\end{align}
+
+\subsubsection*{Konstruktion von $\psi$}
+
+Alle vorkommen in der form $R_i(t_1, t_2)$ in $\hat\varphi$ werden durch 
+$\varphi_{R_i}(t_1,t_2)$ ersetzt.
+
+\begin{align}
+  \varphi_{R_i}(t_1,t_2) :=& E(t_1, t_1) \land E(t_2, t_2) \land\\
+  &\exists e_1 ... \exists e_i E(t_1, e_1) \land E(e_i, t_2) \land\\
+  &\bigwedge_{0<j<i} \varphi_{eindeutig}(e_j)\land E(e_j, e_{j+1})\\
+  \varphi_{eindeutig}(x) := &\exists y \forall z \\
+  & (E(x,y)\land E(x,z) \rightarrow y=z) \\
+  & (E(y,x)\land E(z,x) \rightarrow y=z) \\
+\end{align}
+
+Wir sehen nun dass nach Konstruktion (\ref{pf4}) gilt.
+\begin{flushright} $\Box$ \end{flushright}
+
+
+
+\end{document}
