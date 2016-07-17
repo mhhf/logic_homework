@@ -1,0 +1,85 @@
+% Article template for Mathematics Magazine
+% Revised 7/2002  Thanks for Greg St. George
+\documentclass[12pt]{article}
+\usepackage{amssymb}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\newtheorem{zeige}{Zeige}
+
+
+%todo
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\usepackage{xargs}                      % Use more than one optional parameter in a new commands
+\newcommandx{\QUESTION}[2][1=]{\todo[linecolor=none,backgroundcolor=blue!15,bordercolor=none,#1]{\textbf{QUESTION: }#2}}
+
+%\pflongnumbers
+\def\assumePfkwd{\textsc{Assume}:}%
+\def\provePfkwd{\textsc{Zeige}:}%
+\def\pickPfkwd{\textsc{Pick}}%
+\def\pfnewPfkwd{\textsc{New}}%
+\def\casePfkwd{\textsc{Fall}:}%
+\def\letPfkwd{\textsc{Sei}:}%
+\def\sufficesPfkwd{\textsc{Suffices}:}%
+\def\asufficesPfkwd{\textsc{Suffices}}%
+\def\definePfkwd{\textsc{Def.}:}%
+\def\proofPfkwd{\textsc{Beweis}:}%
+\def\proofsketchPfkwd{\textsc{Proof sketch}:}%
+\def\qedPfkwd{{\fboxsep=\z@\fbox{\rule{.5em}{0pt}\rule{0pt}{2ex}}}}
+\def\qedstepPfkwd{Q.E.D.}
+
+
+
+\begin{document}
+\title{Übungsblatt 9}
+\author{Martin Lundfall}
+\maketitle
+
+\section*{Aufgabe 1}
+Sei $\varphi$ eine Formel und $f$ eine totale Funktion so dass wenn für alle \\
+$m_1, m_2, \dots, m_k, n \in \mathbb N$, wenn
+\begin{equation}
+ f(m_1, m_2, \dots, m_k) = n \mbox{ dann gilt } T \models \varphi(\underline m_1, \underline m_2, \dots, \underline m_k, \underline n)
+\end{equation}
+und für alle $m_1, m_2, \dots, m_k \in \mathbb N$ 
+\begin{equation}
+ T \models \forall y_1 y_2 \left ( \varphi(\underline m_1, \underline m_2, \dots, \underline m_k, y_1) \land \varphi(\underline m_1, \underline m_2, \dots, \underline m_k,  y_2) \rightarrow y_1 = y_2 \right )
+\end{equation}
+Wir können die letzte ausdrück umschreiben als
+\begin{equation}
+ T \models \forall y_1 y_2 \left (\neg (\varphi(\underline m_1, \underline m_2, \dots, \underline m_k, y_1) \land \varphi(\underline m_1, \underline m_2, \dots, \underline m_k,  y_2)) \lor y_1 = y_2 \right )
+\end{equation}
+Also muss, für alle $m_1, m_2, \dots, m_k, n, n' \in \mathbb N$ mit $f(m_1, m_2, \dots, m_k) \not= n$ und $f(m_1, m_2, \dots, m_k) = n'$ die folgende ausdrück gelten:
+\begin{equation}
+  T \models \neg (\varphi(\underline m_1, \underline m_2, \dots, \underline m_k, \underline n) \land \varphi(\underline m_1, \underline m_2, \dots, \underline m_k,  \underline n')) \lor \underline n = \underline n'
+\end{equation}
+Da $Q \subseteq T$, und $n \not = n'$ wissen doch dass $T \models \neg \underline n = \underline n'$ und $T \models  \varphi(\underline m_1, \underline m_2, \dots, \underline m_k,  \underline n')$. Also muss $T \models \neg \varphi(\underline m_1, \underline m_2, \dots, \underline m_k, \underline n)$\\
+Wir benötigen die forderung $Q \subseteq T$ um zu sicherstellen dass \\
+$n = n' \iff \underline n = \underline n'$
+\section*{Aufgabe 2}
+Die gegebene variante von Gödels 1. Unvollständigkeitssatz gilt.\\
+Da die Axiomensystem von T ist semi-entscheidbar, ist es auch rekursiv aufzählbar. VonLemma 3.22 ist dann auch die Menge
+\begin{equation}
+\{ \varphi \in FO[\sigma] : Ax_T \models \varphi \}
+\end{equation}
+rekursiv aufzählbar, wo $Ax_T$ ist die Axiomensystem von T. Aber die Menge oben its genau T. Deswegen ist T auch rekursiv aufzählbar.
+Ein rekursiv aufzählbare theorie ist auch entscheidbar: Gegeben eine satz $\varphi$, nutzte die algoritmus die T aufzählen bis entweder $\varphi$ oder $\neg \varphi$ ausgegeben wird.\\
+Also ist die Relation $R_T = \{n_\xi\ \in \mathbb N : \xi \in T\}$ entscheidbar, und nach Satz 4.11 ist $R_T$ in $Q$ repräsentierbar. Da $T$ enthält $Q$ würde dann also $R_T$ in $T$ repräsentierbar.\\
+Das steht in Widerspruch zu Satz 4.16.\\
+\section*{Aufgabe 3}
+Angenommen, dass die Menge von erfüllbare $FO[\sigma]$-Sätze rekursiv aufzählbar wäre, und sei $A_{wf}$ die algoritmus die nach und nach zählt diese auf.
+
+Dass würde aber bedeuten, dass wir eine algoritmus bauen können die nach und nach zählen eine widerspruchsfreie vollständige theorie T mit $Q \subseteq T$. Das würde offenbar in widerspruch zu Gödels 1. Unvollständigkeitsatz stehen.\\
+Die Menge von $FO[\sigma]$-formeln ist rekursiv aufzählbar. Sei $A_{FO}$ die algoritmus die nach und nach zählen diese.
+Bau T wie folgt: Anfangen mit $T_0 = Q$. Wenn $A_{FO}$ eine Formel $\varphi$ ausgeben, warte bis $A_{wf}$ gibt $\varphi$ oder $\neg \varphi$ aus. Erweitere T mit diese Formel:
+\begin{equation}
+  T_{n+1} = \begin{cases}
+    T_{n} + \varphi & \mbox{ if }A_{wf} \mbox{ outputs }\varphi\\
+    T_{n} + \neg \varphi &\mbox{ if } A_{wf} \mbox{ outputs } \neg \varphi
+  \end{cases}
+\end{equation}
+Da $A_{wf}$ sicherstell dass T widerspruchsfrei bleibt, $A_{FO}$ zählt nach und nach alle $FO[\sigma]$-formeln und $Q \subseteq T$ (da Q erfüllbar ist), ist T eine widerspruchsfreie, rekursive abzählbare Menge die enthält Q, aber auch vollständig ist.\\
+Das steht in Widerspruch zu Gödels 1. Unvollständigkeitssatz.
+\section*{Aufgabe 4}
+\end{document}
