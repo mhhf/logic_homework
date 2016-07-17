@@ -1,0 +1,134 @@
+% Article template for Mathematics Magazine
+% Revised 7/2002  Thanks for Greg St. George
+\documentclass[12pt]{article}
+\usepackage{amssymb}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{wasysym}
+\usepackage{fitch}
+\usepackage{pf2}
+\usepackage{graphicx}
+\renewcommand{\baselinestretch}{1.2}
+%This is the command that spaces the manuscript for easy reading
+\newtheorem{zeige}{Zeige}
+
+
+%todo
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\usepackage{xargs}                      % Use more than one optional parameter in a new commands
+\newcommandx{\QUESTION}[2][1=]{\todo[linecolor=none,backgroundcolor=blue!15,bordercolor=none,#1]{\textbf{QUESTION: }#2}}
+\newcommandx{\TODO}[2][1=]{\todo[inline,linecolor=none,backgroundcolor=blue!15,bordercolor=none,#1]{\textbf{TODO: }#2}}
+
+\pflongnumbers
+\def\assumePfkwd{\textsc{Assume}:}%
+\def\provePfkwd{\textsc{Zeige}:}%
+\def\pickPfkwd{\textsc{Pick}}%
+\def\pfnewPfkwd{\textsc{New}}%
+\def\casePfkwd{\textsc{Fall}:}%
+\def\letPfkwd{\textsc{Sei}:}%
+\def\sufficesPfkwd{\textsc{Suffices}:}%
+\def\asufficesPfkwd{\textsc{Suffices}}%
+\def\definePfkwd{\textsc{Def.}:}%
+\def\proofPfkwd{\textsc{Beweis}:}%
+\def\proofsketchPfkwd{\textsc{Proof sketch}:}%
+\def\qedPfkwd{{\fboxsep=\z@\fbox{\rule{.5em}{0pt}\rule{0pt}{2ex}}}}
+\def\qedstepPfkwd{Q.E.D.}
+
+
+
+\begin{document}
+%\thispagestyle{empty}
+\title{Ausgewählte Kapitel der Logik}
+\author{Denis Erfurt}
+\maketitle
+
+
+
+\subsection*{Aufgabe 1}
+%
+% \begin{align}
+%   1.&a^*ba^* \\
+%   2.&(a^*b^*)^* \\
+%   3.&(aa)^* \\
+%   4.&(a^*b^*)^*(a|b)(a|b)(a|b) \\
+%   4.&a^*ba^*ba^*\\
+% \end{align}
+
+
+Alle DFA's mit nur einem Buchstaben sind trivialler weise Kommutativ.
+Untersuchung eines minimalen DFA's, die über mehr als ein Buchstaben sprechen,
+bezüglich folgender Eigenschaften:
+Falls ein DFA eine Kommutative Sprache erkennt so muss dieser Bisimilar sei zu eiem:
+\begin{enumerate}
+  \item jeder Knoten hat die gleichen Schleifen \label{a11}
+  \item jeder Übergang bez. der Kanten von Knoten zu Knoten ist gleich. \label{a12}
+\end{enumerate}
+
+\subsubsection*{Eigenschaft \ref{a11}}
+Angenommen $\mathcal{L}$ ist kommutativ, sowie Eigenschaft \ref{a11} gilt nicht.
+O.b.d.A gibt es dann ein $x\alpha y\beta z\in \mathcal{L}$ mit $x,y,z,\alpha, \beta\in\Sigma^*$, so dass $\alpha\in \mathcal{L}_1$ und $\beta\in \mathcal{L}_2$ sowie $\mathcal{L}_1\neq \mathcal{L}_2$. Daraus folgt dass $x\beta y\alpha z\notin \mathcal{L}$ was
+ein wiederspruch zur Annahme ist, $\mathcal{L}$ sei Kommutativ.
+
+\subsubsection*{Eigenschaft \ref{a12}}
+Angenommen L ist kommutativ, sowie die Eigenschaft \ref{a12} gilt nicht.
+Beweis analog zu dem von Eigenschaft \ref{a11}:
+
+O.b.d.A gibt es dann ein $x\alpha y\beta z\in \mathcal{L}$ mit $x,y,z,\alpha, \beta\in\Sigma^*$, so dass $\alpha\in \mathcal{L}_1$ und $\beta\in \mathcal{L}_2$ sowie $\mathcal{L}_1\neq \mathcal{L}_2$. Daraus folgt dass $x\beta y\alpha z\notin \mathcal{L}$ was
+ein wiederspruch zur Annahme ist, $\mathcal{L}$ sei Kommutativ.
+
+Insbesondere sind beide Eigenschaften sowie die Bisimilarität von DFA's entscheidbar.
+
+\subsection*{Aufgabe 2}
+\subsubsection*{a)}
+\[ n^2= (1+n_{-1})^2 = 1 + 2 n_{-1} +n_{-1}^2 \]
+\begin{align}
+  \varphi_{C=Squares} := C(1) \land \forall n\forall n^2 &(\exists n_{-1}\exists n_{-1}^2 \\
+  &n_{-1}^2<n^2 \land C(n_{-1}^2) \land \\
+  &\forall z. z < n^2 \land C(z) \rightarrow z\leq n_{-1}^2 \\
+  &n^2 = n^2_{-1} + n_{-1} + n_{-1} + 1) \\
+  &\rightarrow C(n^2)
+\end{align}
+\subsubsection*{b)}
+\begin{align}
+  \psi(x,y) :=& C(x) \land \exists n_{-1}^2\exists n_{-1} \\
+  &C(n_{-1}^2) \land n_{-1}+1=y\land x = n_{-1}^2+n_{-1}+n_{-1}+1
+\end{align}
+
+\subsubsection*{c)}
+\[ z = xy = \frac{(x+y)^2}{4} - \frac{(x-y)^2}{4}\]
+\[ \underbrace{\frac{\overbrace{(x+y)^2}^{q^2}}{4}}_{q^2_4} = z + \underbrace{\frac{\overbrace{(\overbrace{x-y}^d)^2}^{p^2}}{4}}_{p^2_4}\]
+
+\begin{align}
+  \varphi_{\times}' (x,y,z) :=& \exists q^2 \exists q^2_4 \exists d \exists p^2 \exists p^2_4\\
+  &\psi(q^2, x+y) \land \psi(p^2,d) \land \\
+  &(x<y \rightarrow d+x=y) \land \\
+  &(y\leq x \rightarrow d+y=x) \land \\
+  &p^2_4 +p^2_4 +p^2_4 +p^2_4 = p^2 \land \\
+  &q^2_4 +q^2_4 +q^2_4 +q^2_4 = q^2 \land \\
+  &z+p^2_4 = q^2_4
+\end{align}
+\subsection*{Aufgabe 3}
+
+\begin{align}
+  \varphi_{root}(x) :=& \forall y \neg E(y,x) \\
+  \varphi_{leaf}(x) :=& \forall y \neg E(x,z) \land y<z \\
+  \varphi_{l}(x,y) :=& E(x,y)\land \exists z E(x,z)\land y<z\\
+  \varphi_{r}(x,y) :=& E(x,y)\land \exists z E(x,z)\land z<y\\
+  \varphi_{zz}(x_h) :=& \forall u\forall v\forall w (D(w,x_h)\lor w=x_h) \land\\
+                      &(\varphi_l(u,v)\leftrightarrow \varphi_r(v,w)) \\
+  \varphi_{start}(x_0, x_h) :=& \exists x_1 \varphi_l(x_0, x_1) \land D(x_1,x_h) \land\\
+  &\exists x_{h-1} \varphi_r(x_{h-1},x_h) \\
+  \varphi_{step}(x,x_h):=&\exists x_1 \exists x_{h-1} D(x_1,x_h) \land D(x_1, x_{h-1})\land \\ 
+  &\varphi_{zz}(x_h) \land \varphi_{leaf}(x_h)\\
+  &(\varphi_l(x,x_1) \rightarrow \varphi_r(x_{h-1}, x_h)) \land \\
+  &(\varphi_r(x,x_1) \rightarrow \varphi_l(x_{h-1}, x_h)) \\ \\
+  \varphi_{even} :=& \exists x_0 \exists x_h \varphi_{root}(x_0)\land \varphi_{leaf}(x_h) \land \\
+  &\varphi_{zz}(x_h) \land \varphi_{start}(x_0,x_h) \land\\
+  &\forall x \neg \varphi_{leaf}(x) \rightarrow \forall x_h' \varphi_{step}(x,x_h')
+\end{align}
+
+\subsection*{Aufgabe 4}
+\[ \sun \]
+
+\end{document}
