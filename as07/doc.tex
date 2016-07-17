@@ -5,10 +5,10 @@
 \usepackage[ngerman]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
-\usepackage{fitch}
-\usepackage{pf2}
+%\usepackage{fitch}
+%\usepackage{pf2}
 \usepackage{graphicx}
-\renewcommand{\baselinestretch}{1.2}
+%\renewcommand{\baselinestretch}{1.2}
 %This is the command that spaces the manuscript for easy reading
 \newtheorem{zeige}{Zeige}
 
@@ -18,7 +18,7 @@
 \usepackage{xargs}                      % Use more than one optional parameter in a new commands
 \newcommandx{\QUESTION}[2][1=]{\todo[linecolor=none,backgroundcolor=blue!15,bordercolor=none,#1]{\textbf{QUESTION: }#2}}
 
-\pflongnumbers
+%\pflongnumbers
 \def\assumePfkwd{\textsc{Assume}:}%
 \def\provePfkwd{\textsc{Zeige}:}%
 \def\pickPfkwd{\textsc{Pick}}%
@@ -38,7 +38,7 @@
 \begin{document}
 %\thispagestyle{empty}
 \title{Ausgewählte Kapitel der Logik}
-\author{Denis Erfurt}
+\author{Martin Lundfall}
 \maketitle
 
 
@@ -47,16 +47,16 @@
 \subsubsection*{a)}
 \begin{align*}
   \varphi_{on}(z, z_1,...,z_k):=&z=z_1+\underline{1}\lor z = z_1 + z_2 + \underline{2} \lor ... \lor z_1 + ... +z_k + k \\
-  \varphi_{start}^M(x,y,z_1,...,z_k) := &\varphi_{Kopf}^M(x,y) \land
+  \varphi_{start}^M(x,y,z_1,...,z_k) := &\varphi_{Konf}^M(x,y) \land
   \varphi_\beta(x,\underline{0},\underline{q_0}) \land \\
-  &\exists z < y. \underline{0} < z \land \\
+  &\forall z < y. \underline{0} < z \rightarrow \\
   &(\varphi_{on}(z, z_1, ..., z_k) \rightarrow \varphi(x,z,\underline{2})) \land \\
   &(\neg\varphi_{on}(z, z_1, ..., z_k) \rightarrow \varphi(x,z,\underline{1}))
 \end{align*}
 
 \subsubsection*{c)}
 \begin{align*}
-  \varphi_{schritt}^M(x,y,x',y') :=& \varphi_{Kopf}(x,y) \land \varphi_{Kopf}(x',y') \land \\
+  \varphi_{schritt}^M(x,y,x',y') :=& \varphi_{Konf}(x,y) \land \varphi_{Konf}(x',y') \land \\
   & \exists z < y \exists w \leq x \exists w' \leq x \exists \alpha \leq x \exists \alpha' \leq x\\
   &(\forall z' z\neq z'\land z+1\neq z'\land z\neq z'+1 \rightarrow \exists b\leq \varphi_\beta(x,z',b)\land\varphi_\beta(x',z',b))\land \\
   \bigvee_{\substack{q\in Q,\alpha\in\{\underline{0},\underline{1},\underline{2}\} \\ \delta(q,\alpha)=(w',\alpha',p)}} &
@@ -80,6 +80,41 @@
   &\varphi_\beta(x',z,\alpha') \\
 \end{align*}
 \subsection*{Aufgabe 2}
+  Kodieren jeder naturliches zahl als $n = 10^n$\\
+\begin{equation}
+  \begin{split}
+  M &= (Q, A_{TM}, \delta, q_0, F) = <Q999A_{TM}999\delta 999 q_0 999 F > \mbox{ where} \\
+  Q &= q_09q_19\dots 9 q_n\\
+  A_{TM} &= a_0 9 a_1 9 \dots 9 a_n \\
+  \delta &=  \prod q_i9a_n9q_j9a_m9TRAN 99 \mbox{ where } TRAN = \underline 0 | \underline 1 | \underline 2\\
+  q_0 &= q_0 \\
+  F &= f_0 9 f_1 9 \dots 9 f_n
+  \end{split}
+  \end{equation}
 \subsection*{Aufgabe 3}
+\subsection*{(a)}
+Da $a^b$ für $a,b \in \mathbb{N}$ ist berechenbar. Wegen lemma 3.21, ja.
+\subsection*{(b)}
+Gleich
+\subsection*{(c)}
+Geht
+\subsection*{(d)}
+Nicht $\Sigma_1$ definierbar. Angenommen, dass es definierbar wäre. Dann existert eine partielle Funktion, die $\overline H$ semi-entscheidet. Da beide $H$ und $\overline H$ semi-entscheidbar sind, würden sie auch entscheidbar sein. Das bedeudet aber, dass es eine lösung zum Haltung-probleme gäbe.
 \subsection*{Aufgabe 4}
+Angenommen $f(\overline x) = y \iff \mathcal{N} \models \phi(\overline x, y)$ mit $\phi(\overline x, y) \in \Sigma_1$.
+
+Bei eingabe $\overline n$, bau $\mathcal{A_i} = ([i], standard)$ durch $[i]$, wo $i$ ist mindestens so gross als die obere schrank in $\Delta_0$. Kontrollieren ob $A_0 \models \phi(\overline n, 0)$. Falls ja, OUTPUT 0.\\
+Falls nein, Bau $A_{i+1}$ und kontrollieren ob $A_{i+1} \models \phi(\overline n, 0)$ falls ja, OUTPUT 0. Falls nein, kontrollieren ob $A_{i+1} \models \phi(\overline n, 1)$. Falls ja, OUTPUT 1. \\
+Falls nein, gehe weiter mit $A_{i+1}$ und $\phi(\overline n, 0)$, $\phi(\overline n, 1)$ und $\phi(\overline n, 2)$ u.s.w.
+\\
+\\
+BETTER SOLUTION:\\
+$f(\overline x) = y \iff \mathcal N \models \phi(\overline x, y)$\\
+$\phi(x, y) = \exists z \psi(x, y)$ where $\psi(x, y) \in \Delta_0$.\\
+Try $y \in [i]$ for all $z \in [i]$. If no solution found, increment i.
 \end{document}
+Bei jeder eingabe zu $\overline n, m$, können wir ein $\Sigma_1$-satz bauen durch $\phi'_{n,m} := \phi(\overline x,y)[\frac{\overline n, m}{\overline x, y}] \equiv \phi(\overline x,y)$. Da die Menge von $\Sigma_1$-formeln abzählbar ist, können wir eine algoritmus wie folgt bauen:\\
+\\
+
+nimm die k erste $\Sigma_1$-formeln, $\Sigma_{1,k}$. Kontrollieren ob es gibt ein formel $\phi'_{n,m} \equiv \phi(\overline x, y)[\frac{\overline n, m}{\overline x, y}]$, für alle $m<k$ in $\Sigma_1,k$. Falls ja, OUTPUT m.\\
+Falls nicht, fortsetzen mit k+1.
