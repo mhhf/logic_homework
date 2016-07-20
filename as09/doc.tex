@@ -1,0 +1,79 @@
+% Article template for Mathematics Magazine
+% Revised 7/2002  Thanks for Greg St. George
+\documentclass[12pt]{article}
+\usepackage{amssymb}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{fitch}
+\usepackage{pf2}
+\usepackage{graphicx}
+\renewcommand{\baselinestretch}{1.2}
+%This is the command that spaces the manuscript for easy reading
+\newtheorem{zeige}{Zeige}
+
+
+%todo
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\usepackage{xargs}                      % Use more than one optional parameter in a new commands
+\newcommandx{\QUESTION}[2][1=]{\todo[linecolor=none,backgroundcolor=blue!15,bordercolor=none,#1]{\textbf{QUESTION: }#2}}
+\newcommandx{\TODO}[2][1=]{\todo[inline,linecolor=none,backgroundcolor=blue!15,bordercolor=none,#1]{\textbf{TODO: }#2}}
+
+\pflongnumbers
+\def\assumePfkwd{\textsc{Assume}:}%
+\def\provePfkwd{\textsc{Zeige}:}%
+\def\pickPfkwd{\textsc{Pick}}%
+\def\pfnewPfkwd{\textsc{New}}%
+\def\casePfkwd{\textsc{Fall}:}%
+\def\letPfkwd{\textsc{Sei}:}%
+\def\sufficesPfkwd{\textsc{Suffices}:}%
+\def\asufficesPfkwd{\textsc{Suffices}}%
+\def\definePfkwd{\textsc{Def.}:}%
+\def\proofPfkwd{\textsc{Beweis}:}%
+\def\proofsketchPfkwd{\textsc{Proof sketch}:}%
+\def\qedPfkwd{{\fboxsep=\z@\fbox{\rule{.5em}{0pt}\rule{0pt}{2ex}}}}
+\def\qedstepPfkwd{Q.E.D.}
+
+
+
+\begin{document}
+%\thispagestyle{empty}
+\title{Ausgewählte Kapitel der Logik, Übungsblatt 9}
+\author{Denis Erfurt}
+\maketitle
+
+
+
+\subsection*{Aufgabe 1}
+Sei $m_1,...m_k,n\in \mathbb N$ sowie $f(m_1,...,m_k)=n$
+\begin{align}
+  (1.1) & T \models \varphi(\underline{m_1}, ..., \underline{m_k}, \underline{n}) \\
+  (2)   & T \models \forall y_1 \forall y_2 ((\varphi(\underline{m_1}, ..., \underline{m_k}, y_1) \land \varphi(m_1, ..., \underline{m_k}, y_2)) \rightarrow y_1 = y_2)
+\end{align}
+Sei $y_1 = \underline{n}$ und $y_2 = \underline m$ mit $m\neq n$ (an dieser stelle wird $Q\subseteq T$ benutzt), dann folgt aus $(2)$ sowie $(1.1)$:
+\begin{align}
+  &T\models \neg (\varphi(\underline{m_1}, ..., \underline{m_k}, \underline{m}) \land \varphi(m_1, ..., \underline{m_k}, \underline{n})) \lor \underline{m} = \underline{n} \\
+  \Rightarrow & T\models \neg \varphi(\underline{m_1}, ..., \underline{m_k}, \underline{m}) & \text{}\\
+\end{align}
+Und damit $(1.2)$
+
+\subsection*{Aufgabe 2}
+Angenommen die gegebene Variante von Gödels 1. Unvollständigkeitssatz würde nicht
+gelten. Dann gibt es min. eine $\sigma_{Ar}$-Theorie T die alle 3 Eigenschaften
+erfüllt und vollständig ist. Da das Axiomensysthem semi-entscheidbar und damit
+auch rekursiv aufzählbar ist, ist nach Lemma 3.2 T ebenfalls rekursiv aufzählbar.
+Jedoch ist jede vollständige rekursiv aufzählbare Theorie auch entscheidbar. Dieses
+ist ein Wiederspruch zum Satz 4.16 nach dem keine wiederspruchsfreie $\sigma_{Ar}$
+-Theorie T mit $Q\subseteq T$ entscheidbar ist. Daher gilt die angegebene Variante
+von Gödels 1. Unvollständigkeitssatzes.
+\subsection*{Aufgabe 3}
+Beweis durch Wiederspruch. Sei die Menge aller erfüllbaren $FO[\sigma_{Ar}]$-Sätze
+rekursiv aufzählbar. Dann lässt sich rekursiv eine vollständige Theorie $T$ konstruieren,
+die $Q$ enthällt. Dieses ist jedoch ein Wiederspruch zum Satz 4.16.
+Die Theorie T kann konstruiert werden indem ausgehend von Q rekursiv die Sätze
+hinzugefügt werden, für die Theorie wiederspruchsfrei bleibt. Da die menge aller
+erfüllbaren Sätze vollständig ist ist nach konstruktion der neuen Theorie T, diese
+ebenfalls vollständig.
+
+
+\end{document}

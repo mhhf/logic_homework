@@ -84,6 +84,7 @@ Insbesondere sind beide Eigenschaften sowie die Bisimilarität von DFA's entsche
 \[ n^2= (1+n_{-1})^2 = 1 + 2 n_{-1} +n_{-1}^2 \]
 \begin{align}
   \varphi_{C=Squares} := C(1) \land \forall n\forall n^2 &(\exists n_{-1}\exists n_{-1}^2 \\
+  &n_{-1} + 1 = n \land \\
   &n_{-1}^2<n^2 \land C(n_{-1}^2) \land \\
   &\forall z. z < n^2 \land C(z) \rightarrow z\leq n_{-1}^2 \\
   &n^2 = n^2_{-1} + n_{-1} + n_{-1} + 1) \\
